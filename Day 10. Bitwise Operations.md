@@ -132,3 +132,39 @@ cv2.waitKey(0)
 - **Augmented Reality**: Thay thế nền xanh (green screen) sử dụng `bitwise_and` với mask đảo.
 
 Hiểu rõ các phép toán bitwise giúp bạn linh hoạt trong việc xử lý ảnh nhị phân, tạo mặt nạ và kết hợp đối tượng!
+
+### **8. Code**
+
+``` python
+import cv2 
+import numpy as np
+img = cv2.imread("D:\\image\\sky.jpg")
+#cv2.imshow("Original Image",img)
+blank = np.zeros((500,500),dtype="uint8")
+#cv2.imshow("Blank Image",blank)
+
+#create a rectangle and circle
+rectangle = cv2.rectangle(blank.copy(),(30,30),(470,470),255,-1)
+circle = cv2.circle(blank.copy(),(250,250),int(470/2),255,-1)
+cv2.imshow("Circle",circle)
+cv2.imshow("Rectangle",rectangle)
+
+#bitwise AND operation
+bitwiseAnd = cv2.bitwise_and(rectangle,circle)
+cv2.imshow("Bitwise AND",bitwiseAnd)
+
+#bitwise OR operation
+bitwiseOr = cv2.bitwise_or(rectangle,circle)
+cv2.imshow("Bitwise OR",bitwiseOr)
+
+#bitwise XOR operation
+bitwiseXor = cv2.bitwise_xor(rectangle,circle)
+cv2.imshow("Bitwise XOR",bitwiseXor)
+
+#bitwise NOT operation  
+bitwiseNotRectangle = cv2.bitwise_not(rectangle)
+bitwiseNotCircle = cv2.bitwise_not(circle)
+
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+```
